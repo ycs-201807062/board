@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/board/enroll" method="post">
+
+    제목 :
+    <input type="text" th:name="board_title" />
+    내용 :
+    <input type="text" th:name="board_contents" />
+    작성자 :
+    <input type="text" th:name="board_user" />
+    <input type="submit" th:value="check">
+
+</form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table th:border="1">
+    결과 화면
+    <tr th:each="list : ${list}">
+        <td th:text=" ${list.board_no}"> </td>
+        <td th:text="${list.board_title}"> </td>
+        <td th:text="${list.board_contents}"> </td>
+        <td th:text="${list.board_user}"> </td>
+    </tr>
+</table>
+</body>
+</html>
