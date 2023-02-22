@@ -10,4 +10,31 @@
         from board
     </select>
 
+    <select id="get" resultType ="BoardVO">
+        Select board_no,board_title,board_contents,board_user
+        from board
+        where board_no = #{list_no}
+    </select>
+
+<update id="modify">
+    update board
+    set board_title = #{board_title}, board_contents = #{board_contents},board_user = #{board_user} where board_no = #{board_no}
+</update>
+
+    <delete id="delete">
+        delete from board where board_no=#{board_no}
+    </delete>
+
+    <select id="getListPaging" resultType="BoardVO">
+    select board_no,  board_title ,board_user
+    from board order by board_no desc
+    limit #{skip},#{amount}
+    </select>
+
+    <select id="getTotal" resultType="int">
+
+        select count(*) from board
+
+    </select>
+
 </mapper>
