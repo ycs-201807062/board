@@ -18,5 +18,5 @@ public interface BoardMapper {
     void delete(int board_no);
     List<BoardVO> getListPaging(Criteria cri);
 
-    int getTotal();
+    int getTotal(Criteria cri);
 }

@@ -2,7 +2,7 @@ package com.example.board.Service;
 
 import com.example.board.VO.BoardVO;
 import com.example.board.VO.Criteria;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface BoardService {
     BoardVO get(int board_no);
     void modify(BoardVO boardVO);
     void delete(int board_no);
-    List<BoardVO> getListPaging(Criteria criteria);
-    int getTotal();
+    List<BoardVO> getListPaging(Criteria cri);
+    int getTotal(Criteria cri);
 
 }

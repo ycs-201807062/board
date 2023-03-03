@@ -5,7 +5,6 @@ import com.example.board.Service.ReplyService;
 import com.example.board.VO.BoardVO;
 import com.example.board.VO.Criteria;
 import com.example.board.VO.PageMaker;
-import com.example.board.VO.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
 
 @Controller
 @RequestMapping({"/board/*"})
@@ -28,12 +26,11 @@ public class BoardController {
     }
 
     @GetMapping({"/list"})
-    public String boardListGET(Model model, Criteria criteria) {
+    public String boardListGET(Model model, Criteria cri) {
 
-        model.addAttribute("list", boardService.getListPaging(criteria));
-        int total = boardService.getTotal();
-
-        PageMaker pageMaker = new PageMaker(criteria,total);
+        model.addAttribute("list", boardService.getListPaging(cri));
+        int total = boardService.getTotal(cri);
+        PageMaker pageMaker = new PageMaker(cri,total);
         model.addAttribute("pageMaker",pageMaker);
         return "list";
     }
@@ -44,8 +41,9 @@ public class BoardController {
     }
 
     @PostMapping({"/enroll"})
-    public String boardEnrollPOST(BoardVO boardVO) {
+    public String boardEnrollPOST(BoardVO boardVO,RedirectAttributes rttr) {
         this.boardService.enroll(boardVO);
+        rttr.addFlashAttribute("result","enroll success");
         return "redirect:list";
     }
 
@@ -65,13 +63,15 @@ public class BoardController {
         return "modify";
     }
     @PostMapping("/modify")
-    public String boardModifyPOST(BoardVO board) {
+    public String boardModifyPOST(BoardVO board,RedirectAttributes rttr) {
+        rttr.addFlashAttribute("result","modify success");
         this.boardService.modify(board);
         return "redirect:list";
     }
 
     @GetMapping("/delete")
-    public String boardDeleteGET(@RequestParam(name = "board_no")int board_no){
+    public String boardDeleteGET(@RequestParam(name = "board_no")int board_no,RedirectAttributes rttr){
+        rttr.addFlashAttribute("result","delete success");
         this.replyService.Alldelete(board_no);
         this.boardService.delete(board_no);
         return "redirect:list";

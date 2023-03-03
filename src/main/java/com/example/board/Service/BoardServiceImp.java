@@ -37,12 +37,12 @@ public class BoardServiceImp implements BoardService{
     }
 
     @Override
-    public List<BoardVO> getListPaging(Criteria criteria) {
-        return mapper.getListPaging(criteria);
+    public List<BoardVO> getListPaging(Criteria cri) {
+        return mapper.getListPaging(cri);
     }
 
     @Override
-    public int getTotal() {
-        return mapper.getTotal();
+    public int getTotal(Criteria cri) {
+        return mapper.getTotal(cri);
     }
 }
