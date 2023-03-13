@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <style>
+    *{
+      margin: 0;
+      padding:0;
+    }
+
+    /* 화면 전체 렙 */
+    .wrapper{
+      width: 1900px;
+    }
+
+    /* content 랩 */
+    .wrap{
+      width : 800px;
+      margin: auto;
+    }
+    /* 페이지 제목 */
+    .subjecet{
+      width: 100%;
+      height: 120px;
+      background-color: #8EC0E4;
+    }
+    .subjecet span{
+      margin-left: 31px;
+      font-size: 80px;
+      font-weight: 900;
+      color: white;
+    }
+
+    /* 아이디 영역 */
+    .id_wrap{
+      width: 100%;
+      margin-top: 20px;
+    }
+    .id_name{
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .id_input_box{
+      border: 1px solid black;
+      height:31px;
+      padding: 10px 14px;
+
+    }
+    .id_input{
+      width:100%;
+      height:100%;
+      border:none;
+      font-size:28px;
+    }
+
+    /* 비밀번호 영역 */
+    .pw_wrap{
+      width: 100%;
+      margin-top: 20px;
+    }
+    .pw_name{
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .pw_input_box{
+      border: 1px solid black;
+      height:31px;
+      padding: 10px 14px;
+
+    }
+    .pw_input{
+      width:100%;
+      height:100%;
+      border:none;
+      font-size:28px;
+    }
+
+    /* 비밀번호 확인 영역 */
+    .pwck_wrap{
+      width: 100%;
+      margin-top: 20px;
+    }
+    .pwck_name{
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .pwck_input_box{
+      border: 1px solid black;
+      height:31px;
+      padding: 10px 14px;
+
+    }
+    .pwck_input{
+      width:100%;
+      height:100%;
+      border:none;
+      font-size:28px;
+    }
+
+    /* 이름 영역 */
+    .user_wrap{
+      width: 100%;
+      margin-top: 20px;
+    }
+    .user_name{
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .user_input_box{
+      border: 1px solid black;
+      height:31px;
+      padding: 10px 14px;
+
+    }
+    .user_input{
+      width:100%;
+      height:100%;
+      border:none;
+      font-size:28px;
+    }
+
+    /* 메일 영역 */
+    .mail_wrap{
+      width: 100%;
+      margin-top: 20px;
+    }
+    .mail_name{
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .mail_input_box{
+      border: 1px solid black;
+      height:31px;
+      padding: 10px 14px;
+
+    }
+    .mail_input{
+      width:100%;
+      height:100%;
+      border:none;
+      font-size:28px;
+    }
+    .mail_check_wrap{
+      margin-top: 20px;
+    }
+    .mail_check_input_box{
+      border: 1px solid black;
+      height: 31px;
+      padding: 10px 14px;
+      width: 61%;
+      float: left;
+    }
+    .mail_check_input{
+      width:100%;
+      height:100%;
+      border:none;
+      font-size:28px;
+    }
+    .mail_check_button{
+      border: 1px solid black;
+      height: 51px;
+      width: 30%;
+      float: right;
+      line-height: 50px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: 900;
+      background-color: #ececf7;
+      cursor: pointer;
+    }
+
+    /* 주소 영역 */
+    .address_wrap{
+      width: 100%;
+      margin-top: 20px;
+    }
+    .address_name{
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .address_input_1_box{
+      border: 1px solid black;
+      height: 31px;
+      padding: 10px 14px;
+      width: 61%;
+      float: left;
+    }
+    .address_input_1{
+      width:100%;
+      height:100%;
+      border:none;
+      font-size:28px;
+    }
+    .address_button{
+      border: 1px solid black;
+      height: 51px;
+      width: 30%;
+      float: right;
+      line-height: 50px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: 900;
+      background-color: #ececf7;
+      cursor: pointer;
+    }
+    .address_input_2_wrap{
+      margin-top: 20px;
+    }
+    .address_input_2_box{
+      border: 1px solid black;
+      height:31px;
+      padding: 10px 14px;
+
+    }
+    .address_input_2{
+      width:100%;
+      height:100%;
+      border:none;
+      font-size:28px;
+    }
+
+    .address_input_3_wrap{
+      margin-top: 20px;
+    }
+    .address_input_3_box{
+      border: 1px solid black;
+      height:31px;
+      padding: 10px 14px;
+
+    }
+    .address_input_3{
+      width:100%;
+      height:100%;
+      border:none;
+      font-size:28px;
+    }
+
+    /* 가입하기 버튼 */
+    .join_button_wrap{
+      margin-top: 40px;
+      text-align: center;
+    }
+    .join_button{
+      width: 100%;
+      height: 80px;
+      background-color: #6AAFE6;
+      font-size: 40px;
+      font-weight: 900;
+      color: white;
+    }
+
+    /* float 속성 해제 */
+    .clearfix{
+      clear: both;
+    }
+    /* 중복아이디 존재하지 않는경우 */
+    .id_input_re_1{
+      color : green;
+      display : none;
+    }
+    /* 중복아이디 존재하는 경우 */
+    .id_input_re_2{
+      color : red;
+      display : none;
+    }
+    /* 유효성 검사 문구 */
+
+    .final_id_ck{
+      display: none;
+    }
+    .final_pw_ck{
+      display: none;
+    }
+    .final_pwck_ck{
+      display: none;
+    }
+    .final_name_ck{
+      display: none;
+    }
+    /* 비밀번호 확인 일치 유효성검사 */
+    .pwck_input_re_1{
+      color : green;
+      display : none;
+    }
+    .pwck_input_re_2{
+      color : red;
+      display : none;
+    }
+
+  </style>
+
+  <script
+          src="https://code.jquery.com/jquery-3.4.1.js"
+          integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+          crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="wrapper">
+  <form id="join_form" method="post">
+    <div class="wrap">
+      <div class="subjecet">
+        <span>회원가입</span>
+      </div>
+      <div class="id_wrap">
+        <div class="id_name">아이디</div>
+        <div class="id_input_box">
+          <input class="id_input" name="memberId">
+        </div>
+        <span class="id_input_re_1">사용 가능한 아이디입니다.</span>
+        <span class="id_input_re_2">아이디가 이미 존재합니다.</span>
+        <span class="final_id_ck">아이디를 입력해주세요.</span>
+      </div>
+      <div class="pw_wrap">
+        <div class="pw_name">비밀번호</div>
+        <div class="pw_input_box">
+          <input class="pw_input" name="memberPw">
+        </div>
+        <span class="final_pw_ck">비밀번호를 입력해주세요.</span>
+      </div>
+      <div class="pwck_wrap">
+        <div class="pwck_name">비밀번호 확인</div>
+        <div class="pwck_input_box">
+          <input class="pwck_input">
+        </div>
+        <span class="final_pwck_ck">비밀번호 확인을 입력해주세요.</span>
+        <span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
+        <span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
+      </div>
+      <div class="user_wrap">
+        <div class="user_name">이름</div>
+        <div class="user_input_box">
+          <input class="user_input" name="memberName">
+        </div>
+        <span class="final_name_ck">이름을 입력해주세요.</span>
+      </div>
+      <div class="mail_wrap">
+        <div class="mail_name">이메일</div>
+        <div class="mail_input_box">
+          <input class="mail_input" name="memberMail">
+        </div>
+        <div class="mail_check_wrap">
+          <div class="mail_check_input_box">
+            <input class="mail_check_input">
+          </div>
+          <div class="mail_check_button">
+            <span>인증번호 전송</span>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="address_wrap">
+        <div class="address_name">주소</div>
+        <div class="address_input_1_wrap">
+          <div class="address_input_1_box">
+            <input class="address_input_1" name="memberAddr1" >
+          </div>
+          <div class="address_button">
+            <span>주소 찾기</span>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class ="address_input_2_wrap">
+          <div class="address_input_2_box">
+            <input class="address_input_2" name="memberAddr2">
+          </div>
+        </div>
+        <div class ="address_input_3_wrap">
+          <div class="address_input_3_box">
+            <input class="address_input_3" name="memberAddr3">
+          </div>
+        </div>
+      </div>
+      <div class="join_button_wrap">
+        <input type="button" class="join_button" value="가입하기">
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+
+  /* 유효성 검사 통과유무 변수 */
+  var idCheck = false;            // 아이디
+  var idckCheck = false;            // 아이디 중복 검사
+  var pwCheck = false;            // 비번
+  var pwckCheck = false;            // 비번 확인
+  var pwckcorCheck = false;        // 비번 확인 일치 확인
+  var nameCheck = false;            // 이름
+
+  $(document).ready(function (){
+    $(".join_button").click(function (){
+
+      /* 입력값 변수 */
+      var id = $('.id_input').val();                 // id 입력란
+      var pw = $('.pw_input').val();                // 비밀번호 입력란
+      var pwck = $('.pwck_input').val();            // 비밀번호 확인 입력란
+      var name = $('.user_input').val();            // 이름 입력란
+
+
+      /* 아이디 유효성검사 */
+      if(id == ""){
+        $('.final_id_ck').css('display','block');
+        idCheck = false;
+      }else{
+        $('.final_id_ck').css('display', 'none');
+        idCheck = true;
+      }
+
+      /* 비밀번호 유효성 검사 */
+      if(pw == ""){
+        $('.final_pw_ck').css('display','block');
+        pwCheck = false;
+      }else{
+        $('.final_pw_ck').css('display', 'none');
+        pwCheck = true;
+      }
+
+      /* 비밀번호 확인 유효성 검사 */
+      if(pwck == ""){
+        $('.final_pwck_ck').css('display','block');
+        pwckCheck = false;
+      }else{
+        $('.final_pwck_ck').css('display', 'none');
+        pwckCheck = true;
+      }
+
+      /* 이름 유효성 검사 */
+      if(name == ""){
+        $('.final_name_ck').css('display','block');
+        nameCheck = false;
+      }else{
+        $('.final_name_ck').css('display', 'none');
+        nameCheck = true;
+      }
+
+      console.log(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck);
+      if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck){
+          $("#join_form").attr("action", "/member/join");
+          $("#join_form").submit();
+      }
+      return false;
+    });
+  });
+
+  //아이디 중복검사
+  $('.id_input').on("propertychange change keyup paste input", function(){
+
+    var memberId = $('.id_input').val();			// .id_input에 입력되는 값
+    var data = {memberId : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+
+    $.ajax({
+      type : "post",
+      url : "/member/memberIdChk",
+      data : data,
+      success : function(result){
+        // console.log("성공 여부" + result);
+        if(result != 'fail'){
+          $('.id_input_re_1').css("display","inline-block");
+          $('.id_input_re_2').css("display", "none");
+          // 아이디 중복이 없는 경우
+          idckCheck = true;
+        } else {
+          $('.id_input_re_2').css("display","inline-block");
+          $('.id_input_re_1').css("display", "none");
+          // 아이디 중복된 경우
+          idckCheck = false;
+        }
+
+      }// success 종료
+    }); // ajax 종료
+
+  });
+
+  $('.pwck_input').on("propertychange change keyup paste input", function(){
+
+    var pw = $('.pw_input').val();
+    var pwck = $('.pwck_input').val();
+    $('.final_pwck_ck').css('display', 'none');
+
+    if(pw == pwck){
+      $('.pwck_input_re_1').css('display','block');
+      $('.pwck_input_re_2').css('display','none');
+      pwckcorCheck = true;
+    }else{
+      $('.pwck_input_re_1').css('display','none');
+      $('.pwck_input_re_2').css('display','block');
+      pwckcorCheck = false;
+    }
+  });
+
+
+  /*
+  * jQuery (제이쿼리) 문법
+  : 제이쿼리를 사용하면 아주 편하게 HTMl 요소를 선택하고, 쉽게 특정 동작들을 설정할 수 있습니다.
+  사용 예시 :  $(선택자).동작함수();
+  달러($) 기호는 제이쿼리를 의미하면서 제이쿼리에 접근할 수 있는 식별자 입니다.
+  괄호안에 "선택자"를 이용하여 원하는 HTML 요소를 선택하고 동작 함수를 정의하여 선택된 요소에 원하는 동작을 설정합니다.
+  *
+  *
+  * Document 객체의 ready() 메소드
+  자바스크립트 코드는 웹브라우저가 문서의 모든 요소를 로드한 뒤에 실행되어야 합니다.
+  보통은 별다른 문제가 발생하지 않지만, 아래 2가지일 경우에는 오류가 발생합니다.
+  1. 아직 생성되지 않은 HTML 요소에 속성을 추가하려고 할 경우
+  2. 아직 로드되지 않은 이미지의 크기를 얻으려고 할 경우
+  * */
+</script>
+</body>
+</html>

@@ -25,14 +25,113 @@
             width: 100px;
             height: 36px;
         }
+        table{
+            margin-top: 20px;
+        }
+
+        /* 로그인 성공 영역 */
+        .login_success_area{
+            height: 62%;
+            width: 20%;
+            border: 2px solid #7474ad;
+            border-radius: 15px;
+            margin: 5% auto;
+
+        }
+        .login_success_area>span{
+            display : block;
+            text-align: left;
+            margin-left: 10%;
+        }
+        .text-center{
+            margin-top: 30px;
+        }
+        .login_success_area>a{
+            font-size: 15px;
+            font-weight: 900;
+            display: inline-block;
+            margin-top: 5px;
+            background: #e1e5e8;
+            width: 82px;
+            height: 22px;
+            line-height: 22px;
+            border-radius: 25px;
+            color: #606267;
+        }
+        a{
+            text-decoration: none;
+        }
+
+        .top_gnb_area{
+            position:relative;
+        }
+
+        .top_gnb_area .list{
+            position: absolute;
+            top: 0px;
+            right: 0;
+
+        }
+
+        .top_gnb_area .list li{
+            list-style: none;
+            float : left;
+            padding: 13px 15px 0 10px;
+            font-weight: 900;
+            cursor: pointer;
+        }
     </style>
 </head>
 <link  rel="stylesheet" href="/css/list.css">
 <body>
 <div class="container">
-        <h2 class="text-center">게시판목록입니다</h2>
+    <div class="top_gnb_area">
+        <ul class="list">
+            <!-- gnb(global navigation bar) 비 동기식 -->
+            <th:block th:if = "${member == null }">
+            <li >
+                <a href="/member/login">로그인</a>
+            </li>
+            <li>
+                <a href="/member/join">회원가입</a>
+            </li>
+            <li>
+                <a href="/board/list">리스트보기</a>
+            </li>
+            </th:block>
 
-                 <table class="table table-hover table-striped text-center">
+            <th:block th:if="${member != null }">
+
+                <li>
+                    <a id="gnb_logout_button">로그아웃</a>
+                </li>
+                <li>
+                    <a href="/board/list">리스트보기</a>
+                </li>
+
+                <th:block th:if ="${member.adminCk == 1 }">
+                    <li><a href="/admin/main">관리자 페이지</a></li>
+                    </th:block>
+            </th:block>
+        </ul>
+    </div>
+
+        <h2 class="text-center">게시판목록입니다</h2>
+    <!-- 동기식 -->
+
+    <!-- 로그인한 상태 -->
+    <div th:if ="${member != null }">
+        <div class="login_success_area">
+            <span>회원 : <span th:text="${member.memberName}"></span></span>
+
+        </div>
+    </div>
+    <div th:if ="${member != null }">
+        <button  class="btn btn-outline-info" onclick="location.href='/board/enroll'">글 작성 </button>
+    </div>
+
+
+    <table class="table table-hover table-striped text-center">
                       <thead>
                             <tr>
                                 <td>번호 </td>
@@ -78,7 +177,7 @@
             </ul>
         </div>
     </div>
-    <button  class="btn btn-outline-info" onclick="location.href='/board/enroll'">글 작성 </button>
+
 </div>
 <form id="moveForm" method="get">
     <input type="hidden" name="keyword" th:value="${pageMaker.cri.keyword }">
@@ -122,6 +221,19 @@
         moveform.find("input[name='pageNum']").val(1);
         moveform.submit();
     });
+
+    $("#gnb_logout_button").on("click",function (e){
+        //alert("버튼 작동");
+        $.ajax({
+            type:"POST",
+            url:"/member/logout.do",
+            success:function(data){
+                alert("로그아웃 성공");
+                document.location.reload();
+            }
+        }); // ajax
+    });
+
 
     /*]]>*/
 </script>

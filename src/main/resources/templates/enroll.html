@@ -5,10 +5,118 @@
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<style>
+    .mb-3{
+        margin-top: 50px;
+    }
+
+    .search_area{
+        display: inline-block;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-left: 300px;
+    }
+    .search_area input{
+        height: 30px;
+        width: 250px;
+    }
+    .search_area button{
+        width: 100px;
+        height: 36px;
+    }
+    table{
+        margin-top: 20px;
+    }
+
+    /* 로그인 성공 영역 */
+    .login_success_area{
+        height: 62%;
+        width: 20%;
+        border: 2px solid #7474ad;
+        border-radius: 15px;
+        margin: 5% auto;
+
+    }
+    .login_success_area>span{
+        display : block;
+        text-align: left;
+        margin-left: 10%;
+    }
+    .text-center{
+        margin-top: 30px;
+    }
+    .login_success_area>a{
+        font-size: 15px;
+        font-weight: 900;
+        display: inline-block;
+        margin-top: 5px;
+        background: #e1e5e8;
+        width: 82px;
+        height: 22px;
+        line-height: 22px;
+        border-radius: 25px;
+        color: #606267;
+    }
+    a{
+        text-decoration: none;
+    }
+
+    .top_gnb_area{
+        position:relative;
+    }
+
+    .top_gnb_area .list{
+        position: absolute;
+        top: 0px;
+        right: 0;
+
+    }
+
+    .top_gnb_area .list li{
+        list-style: none;
+        float : left;
+        padding: 13px 15px 0 10px;
+        font-weight: 900;
+        cursor: pointer;
+    }
+</style>
+
 </head>
 <body>
 <div class="container">
     <h2 class="text-center">게시판 작성 페이지입니다</h2>
+
+    <div class="top_gnb_area">
+        <ul class="list">
+            <!-- gnb(global navigation bar) 비 동기식 -->
+            <th:block th:if = "${member == null }">
+                <li >
+                    <a href="/member/login">로그인</a>
+                </li>
+                <li>
+                    <a href="/member/join">회원가입</a>
+                </li>
+                <li>
+                    <a href="/board/list">리스트보기</a>
+                </li>
+            </th:block>
+
+            <th:block th:if="${member != null }">
+
+                <li>
+                    <a href="/member/logout.do">로그아웃</a>
+                </li>
+                <li>
+                    <a href="/board/list">리스트보기</a>
+                </li>
+
+                <th:block th:if ="${member.adminCk == 1 }">
+                    <li><a href="/admin/main">관리자 페이지</a></li>
+                </th:block>
+            </th:block>
+        </ul>
+    </div>
+
 <form action="/board/enroll" method="post">
     <div class="mb-3">
         <label class="form-label">제목 :</label>
@@ -19,7 +127,7 @@
         <input class="form-control" th:rows="5" th:type="textarea" th:name="board_contents"/></div>
     <div class="mb-3">
         <label class="form-label">작성자 :</label>
-    <input class="form-control" type="text" th:name="board_user" />
+    <input class="form-control"  type="text" th:name="board_user" th:value="${member.memberName}"  readonly="readonly" />
     </div>
     <input class="btn btn-success" type="submit" th:value="check">
 
@@ -29,7 +137,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+<script>
 
+
+</script>
 </body>
 
 
