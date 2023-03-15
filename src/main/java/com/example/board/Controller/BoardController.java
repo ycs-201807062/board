@@ -28,7 +28,7 @@ public class BoardController {
     @Autowired
     private MemberService memberService;
 
-    Object member;
+
 
     public BoardController() {
     }
@@ -36,10 +36,7 @@ public class BoardController {
     @GetMapping({"/list"}) //board/list 부분 (게시판 리스트)
     public String boardListGET(Model model, Criteria cri , HttpSession session ,MemberVO memberVO) { // 화면의 정보인 Model과 페이지 정보를 갖는 Criteria를 밭는다.
 
-        member = session.getAttribute("member");
-
-
-        model.addAttribute("member",member);
+        model.addAttribute("member",session.getAttribute("member"));
         model.addAttribute("list", boardService.getListPaging(cri)); // 모델에 getListPaging한 값을 list의 이름을 붙여 뷰에 전송한다.
         int total = boardService.getTotal(cri);                                 // 타이틀이 몇개있나 즉, 개시물의 갯수를 total에 담는다.
         PageMaker pageMaker = new PageMaker(cri,total);                         // 페이지 정보와 게시물의 갯수를 받아 페이지 마커를 생성한다.
@@ -51,8 +48,8 @@ public class BoardController {
 
 
     @GetMapping({"/enroll"})                                                 //board/enroll 부분 (게시물 추가)
-    public String boardEnrollGET(Model model) {
-        model.addAttribute("member",member);
+    public String boardEnrollGET(Model model ,HttpSession session) {
+        model.addAttribute("member",session.getAttribute("member"));
         return "enroll";                                                        // 동작할 HTML 파일의 이름을 리턴해준다.
     }
 
@@ -65,9 +62,10 @@ public class BoardController {
 
     /* 게시판 상세 조회 */
     @GetMapping("/get")                                                         //페이지 상세조회부분이다.
-    public String boardGetPageGET(@RequestParam(name = "board_no") int id, Model model) { // RequestParam을 통하여 board_no의 값을 받아 id로 저장하고 페이지 부분을 가지고온다
-        if (member!=null) {
-            model.addAttribute("member", member);//RequestParam을 통해 값을 전달받을 경우 뷰부분에서 직접 값을 넘겨주거나 ajax등을 사용해 넘겨주는방법이 있다,
+    public String boardGetPageGET(@RequestParam(name = "board_no") int id, Model model,HttpSession session) { // RequestParam을 통하여 board_no의 값을 받아 id로 저장하고 페이지 부분을 가지고온다
+
+        if (session.getAttribute("member")!=null) {
+            model.addAttribute("member", session.getAttribute("member"));//RequestParam을 통해 값을 전달받을 경우 뷰부분에서 직접 값을 넘겨주거나 ajax등을 사용해 넘겨주는방법이 있다,
         }
 
         model.addAttribute("pageInfo", boardService.get(id));               // model에 id에 맞는 게시물 DB정보들을 pageInfo 이름에 담아 추가한다(뷰에 전송한다.
@@ -77,8 +75,8 @@ public class BoardController {
 
 
     @GetMapping("/modify")                                                              //게시판 수정부분이다.
-    public String boardModifyGET(@RequestParam(name = "board_no") int id, Model model) {  //값을 가지고오는것은 get과 동일하다
-        model.addAttribute("member",member);
+    public String boardModifyGET(@RequestParam(name = "board_no") int id, Model model,HttpSession session) {  //값을 가지고오는것은 get과 동일하다
+        model.addAttribute("member",session.getAttribute("member"));
         model.addAttribute("pageInfo", boardService.get(id));
         return "modify";
     }

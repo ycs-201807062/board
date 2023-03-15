@@ -72,12 +72,12 @@ public class MemberController {
         }
 
         Session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+        Session.setMaxInactiveInterval(60);
 
         return "redirect:/board/list";
     }
     /* 메인페이지 로그아웃 */
     @RequestMapping(value="logout.do", method= RequestMethod.GET)
-
     public String logoutMainGET(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();

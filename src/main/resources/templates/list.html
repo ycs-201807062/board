@@ -196,6 +196,7 @@
 
     $(document).ready(function (){
         let result = [[${result}]];
+        let member = [[${member}]];
         checkAlert(result);
         function checkAlert(result) {
             if (result === ''){
@@ -212,6 +213,17 @@
                 alert("삭제가 완료되었습니다.");
             }
         }
+
+
+        setTimeout(() => {
+            if (member=== null){
+                return;
+            }else {
+                alert("세션이 만료되었습니다.");
+                location.reload();
+            }
+        },60000);
+
     });
 
     $(".search_area button").on("click", function(e){

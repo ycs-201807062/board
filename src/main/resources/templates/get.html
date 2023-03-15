@@ -147,7 +147,7 @@
     <div th:if="${member==null}">
       회원가입후 이용해주세요
     </div>
-    <div th:if="${pageInfo.board_user==member?.memberName}">
+    <div th:if="${pageInfo.board_user==member?.memberName||member?.memberName == 'admin'}">
     <button class="btn btn-warning" ><a th:href="@{/board/modify(board_no=${pageInfo.board_no})}" >수정하기</a> </button>
     </div>
 
@@ -158,7 +158,7 @@
         <input th:type="hidden" th:value=" ${reply.reply_no}">
         내용 : <span th:text=" ${reply.reply_contents}"> </span><br>
           작성사 : <span th:text="${reply.reply_user} "> </span>
-        <div th:if="${reply.reply_user==member?.memberName}">
+        <div th:if="${reply.reply_user==member?.memberName||member?.memberName == 'admin'}">
         <button class="btn btn-warning" ><a th:href="@{/reply/modify(reply_no=${reply.reply_no})}" >수정하기</a> </button>
         </div>
       </li>
