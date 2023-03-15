@@ -196,7 +196,7 @@
 
     $(document).ready(function (){
         let result = [[${result}]];
-        let member = [[${member}]];
+
         checkAlert(result);
         function checkAlert(result) {
             if (result === ''){
@@ -214,7 +214,7 @@
             }
         }
 
-
+        let member = [[${member}]];
         setTimeout(() => {
             if (member=== null){
                 return;
