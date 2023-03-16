@@ -2,23 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.board.Mapper.BoardMapper">
     <insert id="enroll">
-        insert into board(board_title, board_contents,board_user) values (#{board_title}, #{board_contents}, #{board_user})
+        insert into board(board_title, board_contents,memberName) values (#{board_title}, #{board_contents}, #{memberName})
     </insert>
 
     <select id="select" resultType ="BoardVO">
-        Select board_no,board_title,board_contents,board_user
+        Select board_no,board_title,board_contents,memberName
         from board
     </select>
 
     <select id="get" resultType ="BoardVO">
-        Select board_no,board_title,board_contents,board_user
+        Select board_no,board_title,board_contents, memberName
         from board
         where board_no = #{list_no}
     </select>
 
 <update id="modify">
     update board
-    set board_title = #{board_title}, board_contents = #{board_contents},board_user = #{board_user} where board_no = #{board_no}
+    set board_title = #{board_title}, board_contents = #{board_contents},memberName = #{memberName} where board_no = #{board_no}
 </update>
 
     <delete id="delete">
@@ -26,7 +26,7 @@
     </delete>
 
     <select id="getListPaging" resultType="BoardVO">
-        select board_no,  board_title ,board_user
+        select board_no,  board_title , memberName
         from board
         <if test="keyword != null">
         where board_title like concat('%',#{keyword},'%')

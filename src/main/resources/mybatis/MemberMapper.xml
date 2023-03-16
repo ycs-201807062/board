@@ -3,20 +3,20 @@
 <mapper namespace="com.example.board.Mapper.MemberMapper">
 
     <insert id="memberJoin">
-        insert into book_member values(#{memberId}, #{memberPw}, #{memberName}, #{memberMail}, #{memberAddr1}, #{memberAddr2}, #{memberAddr3}, 0 );
+        insert into member values(#{memberId}, #{memberPw}, #{memberName}, #{memberMail}, #{memberAddr1}, #{memberAddr2}, #{memberAddr3}, 0 );
 
     </insert>
     <!-- 아이디 중복검사 -->
     <select id="idCheck" resultType="int">
 
-        select count(*) from book_member where memberId = #{memberId}
+        select count(*) from member where memberId = #{memberId}
 
     </select>
 
     <!-- 로그인 -->
     <select id="memberLogin" resultType="MemberVO">
 
-        select memberId, memberName, adminck from book_member where memberId = #{memberId} and memberPw = #{memberPw}
+        select memberId, memberName, adminck from member where memberId = #{memberId} and memberPw = #{memberPw}
 
     </select>
 </mapper>

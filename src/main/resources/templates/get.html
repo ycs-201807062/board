@@ -146,12 +146,12 @@
       </div>
       <div class="mb-3">
         <label class="form-label">작성자 : </label>
-        <input class="form-control" type="text" th:name="board_user" readonly="readonly" th:value="${pageInfo.board_user}"/>
+        <input class="form-control" type="text" th:name="memberName" readonly="readonly" th:value="${pageInfo.memberName}"/>
       </div>
     <div th:if="${member==null}">
       회원가입후 이용해주세요
     </div>
-    <div th:if="${pageInfo.board_user==member?.memberName||member?.memberName == 'admin'}">
+    <div th:if="${pageInfo.memberName==member?.memberName||member?.memberName == 'admin'}">
     <button class="btn btn-warning" ><a th:href="@{/board/modify(board_no=${pageInfo.board_no})}" >수정하기</a> </button>
     </div>
 
@@ -161,8 +161,8 @@
       <li class="list-group-item" >
         <input th:type="hidden" th:value=" ${reply.reply_no}">
         내용 : <span th:text=" ${reply.reply_contents}"> </span><br>
-          작성사 : <span th:text="${reply.reply_user} "> </span>
-        <div th:if="${reply.reply_user==member?.memberName||member?.memberName == 'admin'}">
+          작성사 : <span th:text="${reply.memberName} "> </span>
+        <div th:if="${reply.memberName==member?.memberName||member?.memberName == 'admin'}">
         <button class="btn btn-warning" ><a th:href="@{/reply/modify(reply_no=${reply.reply_no})}" >수정하기</a> </button>
         </div>
       </li>
@@ -181,7 +181,7 @@
       </div>
       <div class="form-group">
         <label class="col-sm" >작성자 :</label>
-        <input type="text" th:name="reply_user" th:value="${member.memberName}" readonly="readonly"/>
+        <input type="text" th:name="memberName" th:value="${member.memberName}" readonly="readonly"/>
         <input class="btn btn-success" type="submit" th:value="댓글작성">
       </div>
     </form>

@@ -131,7 +131,7 @@
         <input class="form-control" th:rows="5" th:type="textarea" th:name="board_contents"/></div>
     <div class="mb-3">
         <label class="form-label">작성자 :</label>
-    <input class="form-control"  type="text" th:name="board_user" th:value="${member.memberName}"  readonly="readonly" />
+    <input class="form-control"  type="text" th:name="memberName" th:value="${member.memberName}"  readonly="readonly" />
     </div>
     <input class="btn btn-success" type="submit" th:value="check">
 

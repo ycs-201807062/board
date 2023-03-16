@@ -143,7 +143,7 @@
                             <tr th:each="list : ${list}">
                                  <td th:text=" ${list.board_no}"> </td>
                                  <td> <a th:href="@{/board/get(board_no=${list.board_no})}" th:text="${list.board_title}"></a></td>
-                                 <td  th:text="${list.board_user}"> </td>
+                                 <td  th:text="${list.memberName}"> </td>
                              </tr>
                     </tbody>
              </table>

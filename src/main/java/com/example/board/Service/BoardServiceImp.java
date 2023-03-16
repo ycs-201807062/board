@@ -3,14 +3,20 @@ package com.example.board.Service;
 import com.example.board.Mapper.BoardMapper;
 import com.example.board.VO.BoardVO;
 import com.example.board.VO.Criteria;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class BoardServiceImp implements BoardService{
-    @Autowired
-    private BoardMapper mapper;
+
+    private final BoardMapper mapper;
+
+    public BoardServiceImp(BoardMapper mapper) {
+        this.mapper = mapper;
+    }
+
     @Override
     public void enroll(BoardVO boardVO) {
         this.mapper.enroll(boardVO);
@@ -45,4 +51,5 @@ public class BoardServiceImp implements BoardService{
     public int getTotal(Criteria cri) {
         return mapper.getTotal(cri);
     }
+
 }

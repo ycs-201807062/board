@@ -2,6 +2,7 @@ package com.example.board.Service;
 
 import com.example.board.Mapper.ReplyMapper;
 import com.example.board.VO.ReplyVO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,8 +10,11 @@ import java.util.List;
 
 @Service
 public class ReplyServiceImp implements ReplyService {
-    @Autowired
-    ReplyMapper mapper;
+    private final ReplyMapper mapper;
+
+    public ReplyServiceImp(ReplyMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @Override
     public List<ReplyVO> replySelect(int board_no) {
@@ -31,17 +35,17 @@ public class ReplyServiceImp implements ReplyService {
 
     @Override
     public void replymodify(ReplyVO replyVO) {
-        mapper.replymodify(replyVO);
+        mapper.replyModify(replyVO);
     }
 
     @Override
     public void replydelete(int reply_no) {
-        mapper.replydelete(reply_no);
+        mapper.replyDelete(reply_no);
     }
 
     @Override
     public void Alldelete(int board_no) {
-        mapper.Alldelete(board_no);
+        mapper.AllDelete(board_no);
     }
 
 }

@@ -20,17 +20,15 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping({"/board/*"})// 이 컨트롤러에 있는 Mapping앞에 /board/를 붙인다
 public class BoardController {
-    @Autowired // BoardService타입에 해당하는 객체 빈을 주입해준다
-    private BoardService boardService;
-    @Autowired
-    private ReplyService replyService;
 
-    @Autowired
-    private MemberService memberService;
+    private final BoardService boardService;
+    private final ReplyService replyService;
+    private final MemberService memberService;
 
-
-
-    public BoardController() {
+    public BoardController(BoardService boardService, ReplyService replyService, MemberService memberService) {
+        this.boardService = boardService;
+        this.replyService = replyService;
+        this.memberService = memberService;
     }
 
     @GetMapping({"/list"}) //board/list 부분 (게시판 리스트)
@@ -67,9 +65,9 @@ public class BoardController {
         if (session.getAttribute("member")!=null) {
             model.addAttribute("member", session.getAttribute("member"));//RequestParam을 통해 값을 전달받을 경우 뷰부분에서 직접 값을 넘겨주거나 ajax등을 사용해 넘겨주는방법이 있다,
         }
-
+        /*여기 join활용하여 한번에 가지고 오기*/
         model.addAttribute("pageInfo", boardService.get(id));               // model에 id에 맞는 게시물 DB정보들을 pageInfo 이름에 담아 추가한다(뷰에 전송한다.
-        model.addAttribute("reply",replyService.replySelect(id));           // model에 id에 맞는 댓글 DB정보들을 reply 이름에 담아 추가한다(뷰에 전송한다.
+        model.addAttribute("reply",replyService.replySelect(id));          // model에 id에 맞는 댓글 DB정보들을 reply 이름에 담아 추가한다(뷰에 전송한다.
         return "get";                                                                   // 동작할 HTML 파일의 이름을 리턴해준다.
     }
 

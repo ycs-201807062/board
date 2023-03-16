@@ -18,8 +18,12 @@ public class ReplyController {
 
     String referer;
 
-    @Autowired
-    ReplyService replyService;                                          //replyService타입에 해당하는 객체 빈을 주입해준다
+    private final ReplyService replyService;                                          //replyService타입에 해당하는 객체 빈을 주입해준다
+
+    public ReplyController(ReplyService replyService) {
+        this.replyService = replyService;
+    }
+
     @PostMapping("/insert")                                            //댓글 생성부분이다.
     public String replyInsertPOST(ReplyVO replyVO,BoardVO boardVO) {    //ReplyVO BoardVO 댓글정보와 게시물 정보들을 받아사용한다.
         replyVO.setBoard_no(boardVO.getBoard_no());                     //get페이지에서 동작하기 떄문에 바로 호출해주기위해 replyVo에담아준다

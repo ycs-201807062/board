@@ -13,8 +13,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
-    @Autowired
-    private MemberService memberService;
+
+    private final MemberService memberService;
+
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
 
     //회원가입 페이지 이동
     @GetMapping({"/join"})
