@@ -3,8 +3,7 @@ package com.example.board.Service;
 import com.example.board.Mapper.BoardMapper;
 import com.example.board.VO.BoardVO;
 import com.example.board.VO.Criteria;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.board.VO.getVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class BoardServiceImp implements BoardService{
     }
 
     @Override
-    public BoardVO get(int board_no) {
+    public List<getVO> get(int board_no) {
         return mapper.get(board_no);
     }
 

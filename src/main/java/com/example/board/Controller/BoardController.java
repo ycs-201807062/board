@@ -3,18 +3,18 @@ package com.example.board.Controller;
 import com.example.board.Service.BoardService;
 import com.example.board.Service.MemberService;
 import com.example.board.Service.ReplyService;
-import com.example.board.VO.BoardVO;
-import com.example.board.VO.Criteria;
-import com.example.board.VO.MemberVO;
-import com.example.board.VO.PageMaker;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.board.VO.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+
+import java.util.List;
+
 
 
 @Controller
@@ -65,9 +65,28 @@ public class BoardController {
         if (session.getAttribute("member")!=null) {
             model.addAttribute("member", session.getAttribute("member"));//RequestParam을 통해 값을 전달받을 경우 뷰부분에서 직접 값을 넘겨주거나 ajax등을 사용해 넘겨주는방법이 있다,
         }
+        List<getVO> getVOList = boardService.get(id);
         /*여기 join활용하여 한번에 가지고 오기*/
-        model.addAttribute("pageInfo", boardService.get(id));               // model에 id에 맞는 게시물 DB정보들을 pageInfo 이름에 담아 추가한다(뷰에 전송한다.
-        model.addAttribute("reply",replyService.replySelect(id));          // model에 id에 맞는 댓글 DB정보들을 reply 이름에 담아 추가한다(뷰에 전송한다.
+        // boardService.get(id) --> List<getVO>
+        // foreach
+        BoardDetailDto boardDetailDto = new BoardDetailDto();
+        List<ReplyDetailDto> newReplyList = new ArrayList<>();
+        for (getVO vo : getVOList) {
+            boardDetailDto.setBoard_no(vo.getBoard_no());
+            boardDetailDto.setBoard_title(vo.getBoard_title());
+            boardDetailDto.setBoard_contents(vo.getBoard_contents());
+            boardDetailDto.setMemberName(vo.getMemberName());
+            //
+            ReplyDetailDto replyDetailDto = new ReplyDetailDto();
+            replyDetailDto.setReply_contents(vo.getReply_contents());
+            replyDetailDto.setReply_member(vo.getReply_member());
+            newReplyList.add(replyDetailDto);
+        }
+        boardDetailDto.setReplys(newReplyList);
+        System.out.println("boardDetailDto = " + boardDetailDto.getReplys().size());
+
+        model.addAttribute("pageInfo",boardDetailDto);               // model에 id에 맞는 게시물 DB정보들을 pageInfo 이름에 담아 추가한다(뷰에 전송한다.
+        //model.addAttribute("reply",replyService.replySelect(id));          // model에 id에 맞는 댓글 DB정보들을 reply 이름에 담아 추가한다(뷰에 전송한다.
         return "get";                                                                   // 동작할 HTML 파일의 이름을 리턴해준다.
     }
 

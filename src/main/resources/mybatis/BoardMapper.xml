@@ -10,10 +10,17 @@
         from board
     </select>
 
-    <select id="get" resultType ="BoardVO">
-        Select board_no,board_title,board_contents, memberName
-        from board
-        where board_no = #{list_no}
+    <select id="get" resultType ="getVO">
+        Select b.board_no as board_no,
+               b.board_title as board_title,
+               b.board_contents as board_contents,
+               b.memberName as memberName,
+               r.reply_no as reply_no,
+               r.reply_contents as reply_contents,
+               r.reply_member as reply_member
+        from board b
+        left Join reply r on b.board_no = r.board_no
+        where b.board_no = #{list_no}
     </select>
 
 <update id="modify">

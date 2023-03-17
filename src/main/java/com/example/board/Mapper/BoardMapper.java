@@ -2,9 +2,12 @@ package com.example.board.Mapper;
 
 import com.example.board.VO.BoardVO;
 import com.example.board.VO.Criteria;
+
+import com.example.board.VO.getVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+
 
 @Mapper
 public interface BoardMapper {
@@ -12,7 +15,7 @@ public interface BoardMapper {
 
     List<BoardVO> select();
 
-    BoardVO get(int board_no);
+    List<getVO> get(int board_no);
     void modify(BoardVO boardVO);
 
     void delete(int board_no);
